@@ -5,9 +5,9 @@ from adapters import AutoAdapterModel
 
 app = Flask(__name__)
 
-model = DistilBertForSequenceClassification.from_pretrained("medicalai/ClinicalBERT")
-tokenizer = DistilBertTokenizer.from_pretrained('medicalai/ClinicalBERT')
-model.load_adapter("./models/ophtabert-binary")
+model = DistilBertForSequenceClassification.from_pretrained("ShahRishi/OphthoBERT")
+tokenizer = DistilBertTokenizer.from_pretrained("ShahRishi/OphthoBERT")
+model.load_adapter("./models/ophthabert-binary")
 
 model.eval()
 
