@@ -43,7 +43,7 @@ curl -X POST "http://127.0.0.1:8080/predict/binary" \
 curl -X POST "http://127.0.0.1:8080/predict/subtypes" \
      -H "Content-Type: application/json" \
      -d '{
-           "text": "Patient has pigment dispersion syndrome with elevated eye pressure."
+           "text": "Patient has primary open angle glaucoma with elevated eye pressure."
          }'
 ```
 
