@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from transformers import DistilBertForSequenceClassification, DistilBertTokenizer
 import torch
+import re
 
 # Initialize the Flask app
 app = Flask(__name__)
@@ -18,6 +19,12 @@ subtypes_model = DistilBertForSequenceClassification.from_pretrained("ShahRishi/
 subtypes_model.load_adapter("ShahRishi/ophthabert-glaucoma-subtypes")
 subtypes_model.eval()
 
+# Helper function to preprocess text
+def remove_stopwords(text):
+    text = re.sub(r'[^a-zA-Z0-9\s.,!?;:\'\"-]', '', text)
+    text = re.sub(r'\s+', ' ', text)
+    text = text.strip()
+    return text.lower()
 
 @app.route('/predict/binary', methods=['POST'])
 def predict_binary():
@@ -27,6 +34,7 @@ def predict_binary():
             return jsonify({'error': 'Text field is required'}), 400
 
         text = data['text']
+        text = remove_stopwords(text)
         inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True, max_length=512)
 
         with torch.no_grad():
