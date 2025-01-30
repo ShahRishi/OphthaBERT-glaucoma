@@ -44,6 +44,7 @@ cd OphthaBERT-glaucoma
 
 # Install dependencies in virtual environment
 uv venv --python=3.11               # create a python 3.11 virtual environment
+source .venv/bin/activate           # activate virtual environment
 uv pip install -r requirements.txt  # install locked dependencies
 
 # Run API
