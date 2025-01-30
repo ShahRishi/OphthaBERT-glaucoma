@@ -6,9 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080" 
+      - "8080:8080"
     volumes:
       - ./models:/app/models 
     environment:
       - PYTHONUNBUFFERED=1 
+      - PORT=8080
     restart: always

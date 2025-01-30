@@ -49,7 +49,7 @@ source .venv/bin/activate           # activate virtual environment
 uv pip install -r requirements.txt  # install locked dependencies
 
 # Run API
-python3 api.py
+python3 api.py --config=config.json
 ```
 
 ## Utilizing API

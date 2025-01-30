@@ -2,21 +2,32 @@ from flask import Flask, request, jsonify
 from transformers import DistilBertForSequenceClassification, DistilBertTokenizer
 import torch
 import re
+import json
+import argparse
+
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--config', type=str, required=True, help='Path to the config file')
+args = parser.parse_args()
+
+# Load config file
+with open(args.config, 'r') as f:
+    config = json.load(f)
 
 # Initialize the Flask app
 app = Flask(__name__)
 
 # Load the tokenizer and models
-tokenizer = DistilBertTokenizer.from_pretrained("ShahRishi/OphthaBERT")
+tokenizer = DistilBertTokenizer.from_pretrained(config["tokenizer"])
 
 # Binary classification model
-binary_model = DistilBertForSequenceClassification.from_pretrained("ShahRishi/OphthoBERT", num_labels=2)
-binary_model.load_adapter("ShahRishi/ophthabert-glaucoma-binary")
+binary_model = DistilBertForSequenceClassification.from_pretrained(config["binary_model"], num_labels=2)
+binary_model.load_adapter(config["binary_adapter"])
 binary_model.eval()
 
 # Subtypes classification model
-subtypes_model = DistilBertForSequenceClassification.from_pretrained("ShahRishi/OphthoBERT", num_labels=5)
-subtypes_model.load_adapter("ShahRishi/ophthabert-glaucoma-subtypes")
+subtypes_model = DistilBertForSequenceClassification.from_pretrained(config["subtypes_model"], num_labels=5)
+subtypes_model.load_adapter(config["subtypes_adapter"])
 subtypes_model.eval()
 
 # Helper function to preprocess text
@@ -83,4 +94,4 @@ def predict_subtypes():
 
 if __name__ == '__main__':
     # Run the Flask app
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=config["port"])

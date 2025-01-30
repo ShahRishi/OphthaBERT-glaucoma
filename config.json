@@ -1,0 +1,8 @@
+{
+    "tokenizer": "ShahRishi/OphthaBERT",
+    "binary_model": "ShahRishi/OphthaBERT",
+    "binary_adapter": "ShahRishi/ophthabert-glaucoma-binary",
+    "subtypes_model": "ShahRishi/OphthaBERT",
+    "subtypes_adapter": "ShahRishi/ophthabert-glaucoma-subtypes",
+    "port": 8080
+}
