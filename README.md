@@ -29,6 +29,27 @@ docker compose up --build     # Run Docker image in the foreground
 docker compose up --build -d  # Alternatively, run Docker image in the background
 ```
 
+## Source Installation (not recommended)
+```bash
+# Open a terminal (Command Prompt or PowerShell for Windows, Terminal for macOS or Linux)
+
+# Ensure Git is installed
+# Visit https://git-scm.com to download and install console Git if not already installed
+
+# Clone the repository
+git clone https://github.com/ShahRishi/OphthaBERT-glaucoma.git
+
+# Navigate to the project directory
+cd OphthaBERT-glaucoma
+
+# Install dependencies in virtual environment
+uv venv --python=3.11               # create a python 3.11 virtual environment
+uv pip install -r requirements.txt  # install locked dependencies
+
+# Run API
+python3 api.py
+```
+
 ## Utilizing API
 First test, the installation is working through the following command in your terminal
 ```bash
