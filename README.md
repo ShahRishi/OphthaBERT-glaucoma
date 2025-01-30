@@ -30,6 +30,7 @@ docker compose up --build -d  # Alternatively, run Docker image in the backgroun
 ```
 
 ## Source Installation (not recommended)
+Installation of the latest version of [uv](https://docs.astral.sh/uv/getting-started/installation/) is highly recommended
 ```bash
 # Open a terminal (Command Prompt or PowerShell for Windows, Terminal for macOS or Linux)
 
@@ -42,7 +43,7 @@ git clone https://github.com/ShahRishi/OphthaBERT-glaucoma.git
 # Navigate to the project directory
 cd OphthaBERT-glaucoma
 
-# Install dependencies in virtual environment ([uv](https://docs.astral.sh/uv/getting-started/installation/) is highly recommended)
+# Install dependencies in virtual environment
 uv venv --python=3.11               # create a python 3.11 virtual environment
 source .venv/bin/activate           # activate virtual environment
 uv pip install -r requirements.txt  # install locked dependencies
